@@ -369,7 +369,7 @@ function get_fluidd_download_url() {
   url="https://github.com/fluidd-core/fluidd/releases/latest/download/fluidd.zip"
 
   ### custom dlowload url fileが存在する場合は処理をする
-  if [[-f ${custom_download_url} ]]; then
+  if [[ -f ${custom_download_url} ]]; then
     read -r url < ${custom_download_url}
   fi
 
