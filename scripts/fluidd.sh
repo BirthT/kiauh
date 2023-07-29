@@ -363,8 +363,16 @@ function compare_fluidd_versions() {
 function get_fluidd_download_url() {
   local releases_by_tag tags tag unstable_url url
 
+  local custom_download_url="${KIAUH_SRCDIR}/fluidd_download_url.txt"
+
   ### latest stable download url
   url="https://github.com/fluidd-core/fluidd/releases/latest/download/fluidd.zip"
+
+  ### custom dlowload url fileが存在する場合は処理をする
+  if [[-f ${custom_download_url} ]]; then
+    read -r url < ${custom_download_url}
+  fi
+
 
   read_kiauh_ini "${FUNCNAME[0]}"
   if [[ ${fluidd_install_unstable} == "true" ]]; then
